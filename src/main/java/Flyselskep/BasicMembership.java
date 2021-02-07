@@ -3,11 +3,11 @@ package Flyselskep;
 public class BasicMembership extends Membership{
     @Override
     public int registerPoints(int bonusPointBalance, int newPoints) {
-        return 0;
+        return newPoints;
     }
 
     @Override
     public String getMembershipName() {
-        return null;
+        return "Basic member";
     }
 }
