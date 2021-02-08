@@ -31,9 +31,8 @@ public class MemberArchive {
      * Adds a new member to the register. The new member must have a memebr number
      * different from exsisting members. If not, the new member will not be added.
      *
-     * @return {@code true} if the new member was added successfully,
-     *         {@code false} if the new member could not be added, due to a
-     *          membernumber that allready exsists.
+     * @return -1 if member allready exists
+     *         1 if member is added
      */
     public int addMember(BonusMember bonusMember) {
         int memberInteger;
@@ -63,11 +62,19 @@ public class MemberArchive {
     public boolean registerPoints(int memberNumber, int bonusPoints) {
         boolean success = false;
         if (members.get(memberNumber).registerBonusPoints(bonusPoints)){
+            members.get(memberNumber).checkAndSetMembership();
             return true;
         }
         return success;
     }
 
+    /**
+     * this method finds points that each member we are searching for has
+     * @param memberNumber number of member you want to find
+     * @param password checks if password corresponds with the member
+     * @return returns actual ammount of bonuspoints if password checks out
+     * returns -1 otherwise
+     */
     public int findPoints(int memberNumber, String password) {
         BonusMember copySearch = members.get(memberNumber);
         if (copySearch.checkPassword(password)){
@@ -77,10 +84,14 @@ public class MemberArchive {
     }
 
     /**
-     * Lists all members to the console.
+     * Lists all members.
      */
     public List<BonusMember> allMembers() {
-        return new ArrayList<>(members.values());
+        List<BonusMember> res = new ArrayList<>();
+        for (BonusMember member : members.values()) {
+                res.add(member);
+        }
+        return res;
     }
 
 

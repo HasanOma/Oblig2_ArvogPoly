@@ -17,7 +17,11 @@ public class MemberArchiveClient {
     public static void main(String[] args) {
         MemberArchive memberArchive = new MemberArchive();
 
-//        memberArchive.listAllMembers();
+        memberArchive.fillRegisterWithTestdata();
+
+        for (BonusMember member: memberArchive.allMembers()){
+            System.out.println(member.toString());
+        }
 
         System.out.println("\nAdd some bonuspoints to all of the members..\n");
 
@@ -37,7 +41,10 @@ public class MemberArchiveClient {
         memberArchive.registerPoints(5, 10000);
 
         System.out.println("Now lets see the register:\n");
-        memberArchive.allMembers();
+        for (BonusMember member: memberArchive.allMembers()){
+            System.out.println(member.toString());
+        }
+
 
     }
 }
