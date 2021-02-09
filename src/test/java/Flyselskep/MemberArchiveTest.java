@@ -13,3 +13,4 @@ class MemberArchiveTest {
     void registerPoints() {
     }
 }
+
